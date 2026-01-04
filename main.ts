@@ -35,50 +35,10 @@ namespace Simon {
         }
     }
 
-    //% block="set timeout to %sec seconds"
-    //% block.loc.nl="stel de timeout in op %sec seconden"
-    export function setTimeout(sec: number) {
-        timeout = sec * 1000
-    }
-
-    //% block="add a color"
-    //% block.loc.nl="voeg een kleur toe"
-    export function addColor() {
-        let clr = General.randomInt(0, 2)
-        switch (clr) {
-            case 0: list.push(Color.Red); break;
-            case 1: list.push(Color.Yellow); break;
-            case 2: list.push(Color.Blue); break;
-        }
-    }
-
-    //% block="number of colors"
-    //% block.loc.nl="aantal kleuren"
-    export function colorCount(): number {
-        return list.length
-    }
-
-    //% block="show color %ix"
-    //% block.loc.nl="toon kleur %ix"
-    export function setColor(ix: number) {
-        if (ix >= 0 && ix < list.length)
-            showColor(list[ix])
-    }
-
-    //% block="color %ix"
-    //% block.loc.nl="kleur %ix"
-    export function getColor(ix: number): Color {
-        if (ix >= 0 && ix < list.length)
-            return list[ix]
-        return Color.None
-    }
-
     //% block="the color of the button"
     //% block.loc.nl="de kleur van de knop"
-    export function buttonColor(ix: number): Color {
-        if (ix >= 0 && ix < list.length)
-            return list[ix]
-        return Color.None
+    export function buttonColor(): Color {
+        return button
     }
 
     //% block="wait for a button being pressed"
@@ -96,4 +56,43 @@ namespace Simon {
             basic.pause(1)
         }
     }
+
+    //% block="color %ix"
+    //% block.loc.nl="kleur %ix"
+    export function getColor(ix: number): Color {
+        if (ix >= 0 && ix < list.length)
+            return list[ix]
+        return Color.None
+    }
+
+    //% block="show color %ix"
+    //% block.loc.nl="toon kleur %ix"
+    export function setColor(ix: number) {
+        if (ix >= 0 && ix < list.length)
+            showColor(list[ix])
+    }
+
+    //% block="number of colors after each other"
+    //% block.loc.nl="aantal kleuren achter elkaar"
+    export function colorCount(): number {
+        return list.length
+    }
+
+    //% block="add a color"
+    //% block.loc.nl="voeg een kleur toe"
+    export function addColor() {
+        let clr = General.randomInt(0, 2)
+        switch (clr) {
+            case 0: list.push(Color.Red); break;
+            case 1: list.push(Color.Yellow); break;
+            case 2: list.push(Color.Blue); break;
+        }
+    }
+
+    //% block="set timeout to %sec seconds"
+    //% block.loc.nl="stel de timeout in op %sec seconden"
+    export function setTimeout(sec: number) {
+        timeout = sec * 1000
+    }
+
 }
