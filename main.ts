@@ -13,6 +13,7 @@ namespace Simon {
 
     let list: Color[] = []
     let timeout = 3000
+    let button = Color.None
 
     function showColor(color: Color) {
         switch (color) {
@@ -37,7 +38,7 @@ namespace Simon {
     //% block="set timeout to %sec seconds"
     //% block.loc.nl="stel de timeout in op %sec seconden"
     export function setTimeout(sec: number) {
-        timeout = sec
+        timeout = sec * 1000
     }
 
     //% block="add a color"
@@ -64,27 +65,35 @@ namespace Simon {
             showColor(list[ix])
     }
 
-    //% block="show color %ix"
-    //% block.loc.nl="toon kleur %ix"
+    //% block="color %ix"
+    //% block.loc.nl="kleur %ix"
     export function getColor(ix: number): Color {
         if (ix >= 0 && ix < list.length)
             return list[ix]
         return Color.None
     }
 
-    //% block="wait for a button"
-    //% block.loc.nl="wacht op een knop"
-    export function waitButton(): Color {
+    //% block="the color of the button"
+    //% block.loc.nl="de kleur van de knop"
+    export function buttonColor(ix: number): Color {
+        if (ix >= 0 && ix < list.length)
+            return list[ix]
+        return Color.None
+    }
+
+    //% block="wait for a button being pressed"
+    //% block.loc.nl="wacht tot een knop wordt ingedrukt"
+    export function waitButton() {
         let tm = control.millis() + timeout
-        while (tm > control.millis()) {
+        button = Color.None
+        while (button == Color.None && tm > control.millis()) {
             if (pins.digitalReadPin(DigitalPin.P0))
-                return Color.Red
+                button = Color.Red
             if (pins.digitalReadPin(DigitalPin.P1))
-                return Color.Yellow
+                button = Color.Yellow
             if (pins.digitalReadPin(DigitalPin.P2))
-                return Color.Blue
+                button = Color.Blue
             basic.pause(1)
         }
-        return Color.None
     }
 }
