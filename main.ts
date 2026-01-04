@@ -63,21 +63,21 @@ namespace Simon {
 
     //% block="color %ix"
     //% block.loc.nl="kleur %ix"
-    //% ix.min = 1 ix.defl=1
     export function getColor(ix: number): Color {
-        ix -= 1
         if (ix >= 0 && ix < list.length)
             return list[ix]
+        else
+            basic.showIcon(IconNames.No)
         return Color.None
     }
 
     //% block="show color %ix"
     //% block.loc.nl="toon kleur %ix"
-    //% ix.min = 1 ix.defl=1
     export function setColor(ix: number) {
-        ix -= 1
         if (ix >= 0 && ix < list.length)
             showColor(list[ix])
+        else
+            basic.showIcon(IconNames.No)
     }
 
     //% block="don't show a color"
@@ -89,7 +89,7 @@ namespace Simon {
     //% block="number of colors after each other"
     //% block.loc.nl="aantal kleuren achter elkaar"
     export function colorCount(): number {
-        return list.length
+        return list.length - 1
     }
 
     //% block="add a color"
