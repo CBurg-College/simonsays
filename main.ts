@@ -103,6 +103,12 @@ namespace Simon {
         }
     }
 
+    //% block="restart the game"
+    //% block.loc.nl="start het spel opnieuw"
+    export function restart() {
+        list = []
+    }
+
     //% block="set timeout to %sec seconds"
     //% block.loc.nl="stel de timeout in op %sec seconden"
     export function setTimeout(sec: number) {
