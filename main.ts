@@ -42,9 +42,7 @@ namespace Simon {
     //% block="the color of the button"
     //% block.loc.nl="de kleur van de knop"
     export function buttonColor(): Color {
-        let color = button
-        button = Color.None
-        return color
+        return button
     }
 
     //% block="wait for a button being pressed"
@@ -107,6 +105,7 @@ namespace Simon {
     //% block.loc.nl="start het spel opnieuw"
     export function restart() {
         list = []
+        button = Color.None
     }
 
     //% block="set timeout to %sec seconds"
