@@ -66,6 +66,8 @@ namespace Simon {
     export function getColor(ix: number): Color {
         if (ix >= 0 && ix < list.length)
             return list[ix]
+        else
+            basic.showIcon(IconNames.No)
         return Color.None
     }
 
@@ -74,8 +76,10 @@ namespace Simon {
     export function setColor(ix: number) {
         if (ix >= 0 && ix < list.length)
             showColor(list[ix])
-        else
+        else {
+            showColor(Color.None)
             basic.showIcon(IconNames.No)
+        }
     }
 
     //% block="don't show a color"
