@@ -84,6 +84,14 @@ namespace Simon {
         showColor(Color.None)
     }
 
+    //% block="the final color"
+    //% block.loc.nl="de laatste kleur"
+    export function finalColor(): Color {
+        if (list.length)
+            return list[list.length - 1]
+        return Color.None
+    }
+
     //% block="number of colors after each other"
     //% block.loc.nl="aantal kleuren achter elkaar"
     export function colorCount(): number {
