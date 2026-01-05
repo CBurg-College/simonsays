@@ -42,7 +42,9 @@ namespace Simon {
     //% block="the color of the button"
     //% block.loc.nl="de kleur van de knop"
     export function buttonColor(): Color {
-        return button
+        let color = button
+        button = Color.None
+        return color
     }
 
     //% block="wait for a button being pressed"
@@ -51,11 +53,11 @@ namespace Simon {
         let tm = control.millis() + timeout
         button = Color.None
         while (button == Color.None && tm > control.millis()) {
-            if (pins.digitalReadPin(DigitalPin.P0))
+            if (pins.digitalReadPin(DigitalPin.P0) == 1)
                 button = Color.Red
-            if (pins.digitalReadPin(DigitalPin.P1))
+            if (pins.digitalReadPin(DigitalPin.P1) == 1)
                 button = Color.Yellow
-            if (pins.digitalReadPin(DigitalPin.P2))
+            if (pins.digitalReadPin(DigitalPin.P2) == 1)
                 button = Color.Blue
             basic.pause(1)
         }
@@ -66,8 +68,6 @@ namespace Simon {
     export function getColor(ix: number): Color {
         if (ix >= 0 && ix < list.length)
             return list[ix]
-        else
-            basic.showIcon(IconNames.No)
         return Color.None
     }
 
